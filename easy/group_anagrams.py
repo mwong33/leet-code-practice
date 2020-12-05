@@ -3,17 +3,12 @@ class Solution:
     # word length
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         sorted_words = {}
-        grouped_anagrams = []
         
         for word in strs:
-            sorted_word_list = sorted(word)
-            sorted_word = "".join(sorted_word_list)
-            if sorted_word not in sorted_words.keys():
-                sorted_words[sorted_word] = [word]
+            sorted_word_tuple = tuple(sorted(word))
+            if sorted_word_tuple not in sorted_words.keys():
+                sorted_words[sorted_word_tuple] = [word]
             else:
-                sorted_words[sorted_word].append(word)
+                sorted_words[sorted_word_tuple].append(word)
                 
-        for key in sorted_words.keys():
-            grouped_anagrams.append(sorted_words[key])
-                
-        return grouped_anagrams
+        return sorted_words.values()
