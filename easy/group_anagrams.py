@@ -1,5 +1,5 @@
 class Solution:
-    # O(n) space O(n*mlogm) where n is the number of words and m is the average     
+    # O(n*m) space O(n*mlogm) where n is the number of words and m is the average     
     # word length
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         sorted_words = {}
