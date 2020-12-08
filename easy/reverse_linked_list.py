@@ -4,6 +4,19 @@
 #         self.val = val
 #         self.next = next
 class Solution:
+    # O(1) space O(n) time
+    def reverseListBetterIterativeSolution(self, head: ListNode) -> ListNode:
+        past = None
+        current = head
+        
+        while current != None:
+            temp = current.next
+            current.next = past
+            past = current
+            current = temp
+        
+        return past
+    
     # O(n) space O(n) time
     def reverseListIterativeSolution(self, head: ListNode) -> ListNode:
         reversed_list = None
