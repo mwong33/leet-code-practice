@@ -21,3 +21,16 @@ class Solution:
                 iterate = False
                 
         return reversed_list
+    
+    # O(n) space O(n) time
+    def reverseList(self, head: ListNode) -> ListNode:
+        return self.reverseListRecursion(head, None)
+    
+    def reverseListRecursion(self, head: ListNode, reverse_head: ListNode):
+        if head == None:
+            return reverse_head
+        
+        temp = reverse_head
+        reverse_head = ListNode(head.val)
+        reverse_head.next = temp
+        return self.reverseListRecursion(head.next, reverse_head)
