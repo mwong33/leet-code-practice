@@ -28,3 +28,23 @@ class Solution:
                 next_list = []
                 
         return range_sum
+    
+    # O(n) time O(n) space recursive solution
+    def rangeSumBSTRecursive(self, root: TreeNode, low: int, high: int) -> int:
+        if root == None:
+            return 0
+        
+        range_sum = 0
+        # Check current val
+        if root.val <= high and root.val >= low:
+            range_sum += root.val
+            
+        # Add left subtree
+        if root.left != None and root.val > low:
+            range_sum += self.rangeSumBST(root.left, low, high)
+        
+        # Add right subtree
+        if root.right != None and root.val < high:
+            range_sum += self.rangeSumBST(root.right, low, high)
+            
+        return range_sum
