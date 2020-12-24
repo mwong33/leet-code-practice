@@ -5,7 +5,7 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    # O(n^2) time O(n) space (where n is the number of nodes to construct the tree we are returning)
+    # O(n^2) time O(n^2) space
     def buildTree(self, inorder: List[int], postorder: List[int]) -> TreeNode:
         return self.buildTreeHelper(len(postorder)-1, 0, len(inorder)-1, inorder, postorder)
     
