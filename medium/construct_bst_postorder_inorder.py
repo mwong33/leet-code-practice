@@ -17,7 +17,7 @@ class Solution:
         
         inIndex = 0
         
-        for i in range(inEnd + 1):
+        for i in range(inStart, inEnd + 1):
             if inorder[i] == root.val:
                 inIndex = i
                 break
