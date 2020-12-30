@@ -13,7 +13,7 @@ class Solution:
         return output
     
     # O(logn) time O(1) space
-    # Binary Search the higher element and smaller element
+    # Binary Search the upper-bound target element and lower-bound element
     def searchRangeBinary(self, nums: List[int], target: int) -> List[int]:
         output = [-1, -1]
         
