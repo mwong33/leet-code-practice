@@ -8,7 +8,7 @@ class Solution:
     # O(n) time O(n) space if you count the array we are returning
     def inorderTraversalRecursion(self, root: TreeNode) -> List[int]:
         # inorder traversal - left, node, right
-        # We can traverse the array in inorder traversal with recursion
+        # We can traverse the tree with in inorder traversal via recursion
         if root == None:
             return []
         
