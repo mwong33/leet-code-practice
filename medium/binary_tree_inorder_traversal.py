@@ -6,12 +6,9 @@
 #         self.right = right
 class Solution:
     # O(n) time O(n) space if you count the array we are returning
-    def inorderTraversal(self, root: TreeNode) -> List[int]:
+    def inorderTraversalRecursion(self, root: TreeNode) -> List[int]:
         # inorder traversal - left, node, right
         # We can traverse the array in inorder traversal with recursion
-        return self.inorderTraversalRecursion(root)
-        
-    def inorderTraversalRecursion(self, root):
         if root == None:
             return []
         
