@@ -23,3 +23,12 @@ class Solution:
             zero_count += 1
             
         return zero_count
+    
+    # O(logn) time O(1) space where n is the input n
+    def trailingZeroesDivideByFive(self, n: int) -> int:
+        zeros = 0
+        
+        while n > 0:
+            n //= 5
+            zeros += n
+        return zeros
