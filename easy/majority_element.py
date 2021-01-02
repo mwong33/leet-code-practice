@@ -11,11 +11,7 @@ class Solution:
                 count_table[number] = 1
             else:
                 count_table[number] += 1
-        
-        majority_num = None
-        
+                
         for i in count_table.keys():
-            if majority_num == None or count_table[i] > count_table[majority_num]:
-                majority_num = i
-            
-        return majority_num
+            if count_table[i] > len(nums)/2:
+                return i
