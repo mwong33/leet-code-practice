@@ -50,3 +50,26 @@ class Solution:
             tempA = tempA.next
             
         return None
+    
+    # O(n) time O(1) space where n is the length of the longer linked list
+    def getIntersectionNodeSwitch(self, headA: ListNode, headB: ListNode) -> ListNode:
+        # LeetCode solution 3
+        if headA == None or headB == None:
+            return None
+        
+        tempA = headA
+        tempB = headB
+        
+        while tempA != tempB:
+            tempB = tempB.next
+            tempA = tempA.next
+            
+            if tempA == tempB:
+                return tempA
+            
+            if tempB == None:
+                tempB = headA
+            if tempA == None:
+                tempA = headB
+        
+        return tempA
