@@ -27,3 +27,22 @@ class Solution:
         output_list.sort()
         
         return output_list[len(output_list)-1]
+    
+    # O(n) time, O(1) space
+    def slowestKeyFaster(self, releaseTimes: List[int], keysPressed: str) -> str:
+        winning_key = keysPressed[0]
+        winning_duration = releaseTimes[0]
+        
+        # Loop through each key starting from the second one
+        for index in range(1, len(keysPressed)):
+            current_key = keysPressed[index]
+            current_duration = releaseTimes[index] - releaseTimes[index-1]
+            
+            if current_duration > winning_duration:
+                winning_key = current_key
+                winning_duration = current_duration
+            elif current_duration == winning_duration:
+                if current_key > winning_key:
+                    winning_key = current_key
+            
+        return winning_key
