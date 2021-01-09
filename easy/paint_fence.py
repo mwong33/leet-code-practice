@@ -1,5 +1,35 @@
-class Solution:
-    def numWaysNaive(self, n: int, k: int) -> int:
+# O(n) time O(n) space
+class SolutionMemo:
+    def numWays(self, n: int, k: int) -> int:
+        if n == 0 or k == 0:
+            return 0
+        
+        return self.numWaysMemo({}, n, k)
+    
+    def numWaysMemo(self, cache, n, k):
+        if n == 1:
+            return k
+        if n == 2:
+            return k*k
+        
+        last = 0
+        second_last = 0
+        
+        if n - 1 not in cache:
+            last = self.numWaysMemo(cache, n-1, k)
+            cache[n-1] = last
+        else:
+            last = cache[n-1]
+        if n - 2 not in cache:
+            second_last = self.numWaysMemo(cache, n-2, k)
+            cache[n-2] = second_last
+        else:
+            second_last = cache[n-2]
+            
+        return (k-1) * last + (k-1) * second_last
+
+class SolutionNaive:
+    def numWays(self, n: int, k: int) -> int:
         if n == 0 or k == 0:
             return 0
         
