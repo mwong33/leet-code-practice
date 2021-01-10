@@ -1,6 +1,6 @@
 # O(n^2) time O(n) space
 class Solution:
-    def robSquared(self, nums: List[int]) -> int:
+    def robSquaredTimeLinearSpace(self, nums: List[int]) -> int:
         # Iterate through each house
         # Determine the max amount of money we can make if we stopped at that house
         # To do this, look at all houses before the house we are stopping at excluding the one right before it
@@ -34,7 +34,7 @@ Bottom Up
 
 # O(n) time O(n) space
 class Solution:
-    def robLinear(self, nums: List[int]) -> int:
+    def robLinearTimeLinearSpace(self, nums: List[int]) -> int:
         # Iterate through each house
         # Determine the max amount of money we can make if we stopped at that house
         # To do this, look at the previous two houses. Take the max of either just the previous house (not robbing the house we are at)
@@ -58,3 +58,34 @@ class Solution:
             rob_house_array[i] = max_value
             
         return max(rob_house_array)
+
+# O(n) time O(1) space
+class Solution:
+    def robLinearTimeConstantSpace(self, nums: List[int]) -> int:
+        # Iterate through each house
+        # Determine the max amount of money we can make if we stopped at that house
+        # To do this, look at the previous two houses. Take the max of either just the previous house (not robbing the house we are at)
+        # or adding our house value to the value of two houses before it
+        if len(nums) == 0:
+            return 0
+        
+        if len(nums) == 1:
+            return nums[0]
+        
+        past_2 = nums[0]
+        past_1 = max(nums[0], nums[1])
+        rolling_max = past_1
+        
+        for i in range(2, len(nums)):
+            skip_house = past_1
+            rob_house = past_2 + nums[i]
+            
+            max_value = max(skip_house, rob_house)
+            
+            past_2 = past_1
+            past_1 = max_value
+            
+            if max_value > rolling_max:
+                rolling_max = max_value
+            
+        return rolling_max
