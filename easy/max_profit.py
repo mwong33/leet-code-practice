@@ -6,8 +6,8 @@ class Solution:
         # starting with the second digit loop through each digit
         # 1) given the current minimum digit see if our current digit exceeds it
         # 2) if it does check the profit and compare it with our current profit (initially set to 0)
-        # 3) if it is is greater than the current profit, replace the current profit with our new profit value
-        # 4) see if our current digit is greater than the current minimum. If it is, replace the minimum with our current minimum
+        # 3) if it is greater than the current profit, replace the current profit with our new profit value
+        # 4) see if our current digit is less than the current minimum. If it is, replace the minimum with our current minimum
         if len(prices) <= 1:
             return 0
         
