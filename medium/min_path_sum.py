@@ -1,6 +1,33 @@
 class Solution:
+    # Top Down Memo. O(n) time O(n) space
+    def minPathSumTopDown(self, grid: List[List[int]]) -> int:
+        last_col = len(grid[0]) - 1
+        last_row = len(grid) - 1
+        cache = {}
+        
+        return self.minPathSumMemo(grid, last_row, last_col, cache)
+    
+    def minPathSumMemo(self, grid, row, col, cache):
+        if (row, col) in cache:
+            return cache[(row, col)]
+        
+        # Top Left Corner Base Case
+        if row - 1 < 0 and col - 1 < 0:
+            return grid[row][col]
+        
+        # First Col Case
+        if col - 1 < 0:
+            result =  grid[row][col] + self.minPathSumMemo(grid, row-1, col, cache)
+        elif row - 1 < 0:
+            result = grid[row][col] + self.minPathSumMemo(grid, row, col-1, cache)
+        else:
+            result = grid[row][col] + min(self.minPathSumMemo(grid, row-1, col, cache), self.minPathSumMemo(grid, row, col-1, cache))
+        
+        cache[(row, col)] = result
+        return result
+    
     # O(n*m) time O(n*m) space if you count the grid we are using as extra memory otherwise O(1) space (Bottom Up Table)
-    def minPathSum(self, grid: List[List[int]]) -> int:
+    def minPathSumBottomUp(self, grid: List[List[int]]) -> int:
         # Loop through each element from top to bottom left to right.
         # For the element we are one, try to calculate the shortest path to that element 
         # and replace the value with that shortest path value.
