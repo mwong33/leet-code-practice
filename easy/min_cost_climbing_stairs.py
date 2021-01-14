@@ -1,6 +1,6 @@
 class Solution:
     # O(n) time O(n) space Top Down Memo
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
+    def minCostClimbingStairsTopDown(self, cost: List[int]) -> int:
         cache = {}
         return min(self.minCostClimbingStairsMemo(cost, len(cost)-1, cache), self.minCostClimbingStairsMemo(cost, len(cost)-2, cache))
         
@@ -20,7 +20,7 @@ class Solution:
         return result
     
     # O(n) time O(1) space Bottom Up Variables
-    def minCostClimbingStairs(self, cost: List[int]) -> int:
+    def minCostClimbingStairsVariable(self, cost: List[int]) -> int:
         if len(cost) == 2:
             return min(cost)
         
