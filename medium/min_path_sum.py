@@ -1,5 +1,5 @@
-# O(n*m) time O(n*m) space if you count the grid we are using as extra memory otherwise O(1) space
 class Solution:
+    # O(n*m) time O(n*m) space if you count the grid we are using as extra memory otherwise O(1) space (Bottom Up Table)
     def minPathSum(self, grid: List[List[int]]) -> int:
         # Loop through each element from top to bottom left to right.
         # For the element we are one, try to calculate the shortest path to that element 
