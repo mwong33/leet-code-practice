@@ -1,15 +1,18 @@
 class Solution:
-    # O(n) time, O(1) space
+    # O(n) time O(1) space
     def minCostClimbingStairs(self, cost: List[int]) -> int:
-        first_option = 0
-        second_option = 0
+        if len(cost) == 2:
+            return min(cost)
         
-        for x in reversed(cost):
-            temp = first_option
-            first_option = x + min(first_option, second_option)
-            second_option = temp
+        previous = cost[1]
+        previous_2 = cost[0]
+         
+        for index in range(2, len(cost)):
+            temp = previous
+            previous = min(previous_2, previous) + cost[index]
+            previous_2 = temp
             
-        return min(first_option, second_option)
+        return min(previous, previous_2)
     
     # O(n) time O(n) space
     def minCostClimbingStairsTable(self, cost: List[int]) -> int:
