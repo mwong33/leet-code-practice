@@ -1,5 +1,5 @@
 class Solution:
-    # Top Down Memo - O(days) time O(days) space
+    # Bottom Up Table - 
     def mincostTickets(self, days: List[int], costs: List[int]) -> int:
         return self.mincostTicketsMemo(days, costs, 0, {})
         
@@ -16,38 +16,28 @@ class Solution:
         
         # Consider 1 day option
         day_limit = days[index] + 1
-        next_day_index = None
-        for i in range(index+1, len(days)):
-            if days[i] >= day_limit:
-                next_day_index = i
-                break
-                
+        next_day_index = self.dayLimit(days, index, day_limit)
         one_day_cost = costs[0] + self.mincostTicketsMemo(days, costs, next_day_index, cache)
         
         # Consider 7 day option
         day_limit = days[index] + 7
-        next_day_index = None
-        for i in range(index+1, len(days)):
-            if days[i] >= day_limit:
-                next_day_index = i
-                break
-                
+        next_day_index = self.dayLimit(days, index, day_limit)
         seven_day_cost = costs[1] + self.mincostTicketsMemo(days, costs, next_day_index, cache)
         
         # Consider 30 day option
         day_limit = days[index] + 30
-        next_day_index = None
-        for i in range(index+1, len(days)):
-            if days[i] >= day_limit:
-                next_day_index = i
-                break
-                
+        next_day_index = self.dayLimit(days, index, day_limit)
         thirty_day_cost = costs[2] + self.mincostTicketsMemo(days, costs, next_day_index, cache)
         
         result = min(one_day_cost, seven_day_cost, thirty_day_cost)
         cache[index] = result
         
         return result
+    
+    def dayLimit(self, days, index, day_limit):
+        for i in range(index+1, len(days)):
+            if days[i] >= day_limit:
+                return i
         
 """
 If you are on day 1
