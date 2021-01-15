@@ -1,4 +1,32 @@
 class Solution:
+    # Top Down Memo - O(n) time O(n) space
+    def numSquares(self, n: int) -> int:
+        return self.numSquaresMemo(n, {})
+    
+    def numSquaresMemo(self, remaining, cache):
+        if remaining in cache:
+            return cache[remaining]
+        
+        # Base Cases
+        if remaining == 0:
+            return 0
+        
+        if remaining < 0:
+            return False
+        
+        min_option = False
+        for i in range(1, remaining+1):
+            if i*i <= remaining:
+                potential_option = self.numSquaresMemo(remaining-(i*i), cache)
+                if potential_option == 0 or potential_option != False:
+                    if min_option == False or min_option > 1+ potential_option:
+                        min_option = 1 + potential_option
+            else:
+                break
+        
+        cache[remaining] = min_option
+        return min_option
+    
     # Bottom Up Table - O(n * m) time O(n) space where m is the largest square number less than or equal to n
     def numSquaresBottomUp(self, n: int) -> int:
         # Create a remainder_array of length n+1 and fill it with None
