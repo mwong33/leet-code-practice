@@ -1,6 +1,6 @@
 class Solution:
     # Top Down Memo - O(m*n) time O(m*n) space
-    def minFallingPathSum(self, A: List[List[int]]) -> int:
+    def minFallingPathSumTopDown(self, A: List[List[int]]) -> int:
         min_sum = None
         
         for index in range(len(A[0])):
@@ -33,3 +33,32 @@ class Solution:
         cache[(row, col)] = result
         
         return result
+
+    # Bottom Up Table - O(m*n) time O(m*n) space
+    def minFallingPathSumBottomUp(self, A: List[List[int]]) -> int:        
+        # Start with the penultimate row
+        # Work your way to the top row, choosing your minimum choices along the way
+        # Return the min of the top row
+        for row in range(len(A)-2, -1, -1):
+            for col in range(len(A[0])):
+                # Single Col Edge Case
+                if col == 0 and col == len(A[0]) - 1:
+                    A[row][col] += A[row+1][col] 
+                # First Col Edge Case
+                elif col == 0:
+                    A[row][col] += min(A[row+1][col+1], A[row+1][col])
+                # Last Col Edge Case
+                elif col == len(A[0]) - 1:
+                    A[row][col] += min(A[row+1][col-1], A[row+1][col])
+                else:
+                    A[row][col] += min(A[row+1][col-1], A[row+1][col], A[row+1][col+1])
+        
+        print(A)
+        return min(A[0])
+"""
+Bottom Up
+
+1  2  3  12 13 15
+4  5  6  11 12 14
+7  8  9  7  8  9
+"""
