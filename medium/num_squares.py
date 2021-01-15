@@ -1,6 +1,6 @@
-# O(n * m) time O(n) space where m is the largest square number less than or equal to n
 class Solution:
-    def numSquares(self, n: int) -> int:
+    # Bottom Up Table - O(n * m) time O(n) space where m is the largest square number less than or equal to n
+    def numSquaresBottomUp(self, n: int) -> int:
         # Create a remainder_array of length n+1 and fill it with None
         # Loop from 0 to n
         # For each digit determine the minimum number of square numbers to form it
