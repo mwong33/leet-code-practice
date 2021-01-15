@@ -52,8 +52,7 @@ class Solution:
                     A[row][col] += min(A[row+1][col-1], A[row+1][col])
                 else:
                     A[row][col] += min(A[row+1][col-1], A[row+1][col], A[row+1][col+1])
-        
-        print(A)
+   
         return min(A[0])
 """
 Bottom Up
