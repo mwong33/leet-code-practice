@@ -1,4 +1,36 @@
 class Solution:
+    # Bottom Up - O(n) time O(1) space by brianchiang_tw
+    def maxProfitBottomUp(self, prices: List[int], fee: int) -> int:
+        not_hold_value = 0
+        hold_value = -float('inf')
+        
+        for stock_price in prices:
+            prev_not_hold_value = not_hold_value
+            prev_hold_value = hold_value
+            
+            # Sell stock at current price or stick with current not_hold_value
+            not_hold_value = max(prev_not_hold_value, stock_price + prev_hold_value)
+            
+            # Buy stock at current price or keep stock with current hold value
+            hold_value = max(prev_hold_value, prev_not_hold_value - stock_price - fee)
+            
+        return not_hold_value
+            
+"""
+          sell (+ hold_value)
+          -->
+hold               not_hold
+          <--      
+          buy ( - stock_price + fee)
+
+Ex:
+
+fee = 2
+                      1   3   2   8   4   9
+not_hold_value  0     0   0   0   5   5   8
+hold_value     -inf  -3  -3  -3  -3  -1  -1    
+"""
+    
     # Top Down Memo - O(n) time O(n^2) space (Time Out)
     def maxProfit(self, prices: List[int], fee: int) -> int:
         if len(prices) <= 1:
