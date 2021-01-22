@@ -1,5 +1,5 @@
 class Solution:
-    # Top Down Memo -
+    # Top Down Memo - O(n^2) time O(n^2) space
     def stoneGame(self, piles: List[int]) -> bool:
         result = self.stoneGameMemo(piles, 0, len(piles)-1, 1, {})
         if result[0] > result[1]:
