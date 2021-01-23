@@ -1,4 +1,36 @@
 class Solution:
+    # Bottom Up Table - O(costs) time O(costs) space
+    def minCostTable(self, costs: List[List[int]]) -> int:
+        if len(costs) == 0:
+            return 0
+        
+        dp = [[0] * len(costs) for _ in range(3)]
+        dp[0][0] = costs[0][0]
+        dp[1][0] = costs[0][1]
+        dp[2][0] = costs[0][2]
+        
+        for i in range(1, len(costs)):
+            # Best Red Choice
+            dp[0][i] = costs[i][0] + min(dp[1][i-1], dp[2][i-1])
+            
+            # Best Blue Choice
+            dp[1][i] = costs[i][1] + min(dp[0][i-1], dp[2][i-1])
+            
+            # Best Green Choice
+            dp[2][i] = costs[i][2] + min(dp[0][i-1], dp[1][i-1])
+            
+        return min(dp[0][-1], dp[1][-1], dp[2][-1])
+"""
+0 - red 
+1 - blue 
+2 - green
+
+         1    2    3
+red     17   18   21  
+blue     2   33   10 
+green   17    7   37 
+"""
+    
     # Recursive Memo - O(costs) time O(costs) space
     def minCost(self, costs: List[List[int]]) -> int:
         if len(costs) == 0:
