@@ -1,4 +1,27 @@
 class Solution:
+    # Bottom Up - O(costs) time O(1) space
+    def minCostOptimum(self, costs: List[List[int]]) -> int:
+        if len(costs) == 0:
+            return 0
+
+        red = costs[0][0]
+        blue = costs[0][1]
+        green = costs[0][2]
+        
+        for i in range(1, len(costs)):
+            prev_red = red
+            prev_blue = blue
+            prev_green = green
+            
+            # Best Red Choice
+            red = costs[i][0] + min(prev_blue, prev_green)        
+            # Best Blue Choice
+            blue = costs[i][1] + min(prev_red, prev_green)            
+            # Best Green Choice
+            green = costs[i][2] + min(prev_red, prev_blue)
+            
+        return min(red, blue, green)
+    
     # Bottom Up Table - O(costs) time O(costs) space
     def minCostTable(self, costs: List[List[int]]) -> int:
         if len(costs) == 0:
