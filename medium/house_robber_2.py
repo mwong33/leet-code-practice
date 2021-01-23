@@ -1,6 +1,37 @@
 class Solution:
+    # Bottom Up Table - O(nums) time O(1) space
+    def robOptimum(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        
+        if len(nums) == 2:
+            return max(nums)
+        
+        prev_chose_first = nums[0]
+        prev_not_first = 0
+        
+        chose_first = max(nums[0], nums[1])
+        not_first = nums[1]
+        
+        for i in range(2, len(nums)):
+            temp_chose_first = chose_first
+            temp_not_first = not_first
+            
+            # Last house edge case
+            if i == len(nums)-1:
+                chose_first = temp_chose_first
+                not_first = max(nums[i] + prev_not_first, not_first)
+            else:
+                chose_first = max(nums[i] + prev_chose_first, temp_chose_first)
+                not_first = max(nums[i] + prev_not_first, not_first)
+                
+                prev_chose_first = temp_chose_first
+                prev_not_first = temp_not_first
+        
+        return max(chose_first, not_first)
+     
     # Bottom Up Table - O(nums) time O(nums) space
-    def rob(self, nums: List[int]) -> int:
+    def robTable(self, nums: List[int]) -> int:
         dp = [[0] * len(nums) for _ in range(2)]
         dp[0][0] = nums[0]
         
