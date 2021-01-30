@@ -23,8 +23,7 @@ class WordDictionary:
         current_dict["*"] = True 
                 
     # O(m) time for well defined words and O(1) space
-    # O(n*26^m) O(m) space for undefined words where n is the number of keys and 
-    # m is the length of the word to search
+    # O(26^m) O(m) space for undefined words where m is the length of the word to search
     def search(self, word: str) -> bool:
         return self.searchHelper(word, self.trie)
     
