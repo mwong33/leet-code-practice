@@ -3,7 +3,6 @@ import heapq
 class Solution:
     # Dictionary + Heap - O(words + k * log(words)) time O(words) space
     def topKFrequent(self, words: List[str], k: int) -> List[str]:
-        pass
         word_dict = {}
         heap = []
         
