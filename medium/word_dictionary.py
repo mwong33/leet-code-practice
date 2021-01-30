@@ -4,7 +4,7 @@ class WordDictionary:
         """
         Initialize your data structure here.
         """
-        # O(word_count) where word_count is number of words we store 
+        # O(letter_count) where letter_count is number of words we store 
         # At worst case no words have common prefixes and we store each character
         # of each word individually
         self.trie = {}
