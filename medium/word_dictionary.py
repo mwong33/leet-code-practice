@@ -4,7 +4,7 @@ class WordDictionary:
         """
         Initialize your data structure here.
         """
-        # O(letter_count) where letter_count is number of words we store 
+        # O(word_count) where word_count is number of words we store 
         # At worst case no words have common prefixes and we store each character
         # of each word individually
         self.trie = {}
@@ -22,8 +22,9 @@ class WordDictionary:
                 
         current_dict["*"] = True 
                 
-    # O(n) time for well defined words and O(1) space
-    # O(n*26^n) O(n) space for undefined words
+    # O(m) time for well defined words and O(1) space
+    # O(n*26^m) O(m) space for undefined words where n is the number of keys and 
+    # m is the length of the word to search
     def search(self, word: str) -> bool:
         return self.searchHelper(word, self.trie)
     
