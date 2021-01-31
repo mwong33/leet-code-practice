@@ -6,13 +6,13 @@
 #         self.right = right
 class Solution:
     # O(n) time O(h) space where h is the height of the tree
-    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:
-        if root == None:
-            return False
-        
+    def hasPathSum(self, root: TreeNode, targetSum: int) -> bool:        
         return self.dfs(root, targetSum, 0)
     
     def dfs(self, root, target, current):
+        if root == None:
+            return False
+        
         current += root.val
         
         # Base Cases
@@ -21,10 +21,5 @@ class Solution:
                 return True
             else:
                 return False
-        
-        if root.left != None and root.right != None:
-            return self.dfs(root.left, target, current) or self.dfs(root.right, target, current)
-        elif root.left != None:
-            return self.dfs(root.left, target, current)
-        else:
-            return self.dfs(root.right, target, current)
+
+        return self.dfs(root.left, target, current) or self.dfs(root.right, target, current)
