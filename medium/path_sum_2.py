@@ -25,9 +25,6 @@ class Solution:
         left_result = self.dfs(root.left, target_sum, current_sum)
         right_result = self.dfs(root.right, target_sum, current_sum)
 
-        if left_result == [] and right_result == []:
-            return []
-        
         for index in range(len(left_result)):
             left_result[index] = [root.val] + left_result[index]
         
