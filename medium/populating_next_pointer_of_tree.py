@@ -11,7 +11,7 @@ class Node:
 
 class Solution:
     # BFS - O(n) time O(m) space where n is the number of nodes. m is the number of leaf nodes
-    def connect(self, root: 'Node') -> 'Node':
+    def connectBFS(self, root: 'Node') -> 'Node':
         if root == None:
             return
         
@@ -37,3 +37,32 @@ class Solution:
                 next_level = deque([])
                 
         return root
+    
+    # DFS - O(n) time O(1) space
+    def connectDFS(self, root: 'Node') -> 'Node':
+        if root == None:
+            return
+        
+        if root.left != None:
+            # Setup the children
+            root.left.next = root.right
+            
+        self.dfs(root.left)
+        self.dfs(root.right)
+        
+        return root
+    
+    def dfs(self, root):
+        if root == None:
+            return
+        
+        # Check if you need to merge the middle
+        if root.next != None and root.next.left != None:
+            root.right.next = root.next.left
+            
+        # Merge your children
+        if root.left != None:
+            root.left.next = root.right
+        
+        self.dfs(root.left)
+        self.dfs(root.right)
