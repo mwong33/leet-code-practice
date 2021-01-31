@@ -6,13 +6,13 @@
 #         self.right = right
 class Solution:
     # O(n^2) O(h) space where h is the height of the tree and n is the number of nodes
-    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:
-        if root == None:
-            return []
-        
+    def pathSum(self, root: TreeNode, targetSum: int) -> List[List[int]]:        
         return self.dfs(root, targetSum, 0)
         
     def dfs(self, root, target_sum, current_sum):
+        if root == None:
+            return []
+        
         current_sum += root.val
         
         # Base Case
@@ -22,17 +22,9 @@ class Solution:
             else:
                 return []
         
-        left_result = []
-        right_result = []
-        
-        if root.left != None and root.right != None:
-            left_result = self.dfs(root.left, target_sum, current_sum)
-            right_result = self.dfs(root.right, target_sum, current_sum)
-        elif root.left != None:
-            left_result = self.dfs(root.left, target_sum, current_sum)
-        else:
-            right_result = self.dfs(root.right, target_sum, current_sum)
-            
+        left_result = self.dfs(root.left, target_sum, current_sum)
+        right_result = self.dfs(root.right, target_sum, current_sum)
+
         if left_result == [] and right_result == []:
             return []
         
