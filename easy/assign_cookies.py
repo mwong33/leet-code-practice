@@ -1,6 +1,6 @@
 class Solution:
-    # O(glogg + slogs) time O(1) space where s is the length of the s array 
-    # and g is the length of the g array
+    # O(glogg + slogs) time O(1) space where s is the length of the s array.
+    # and g is the length of the g array.
     def findContentChildren(self, g: List[int], s: List[int]) -> int:
         if len(s) == 0:
             return 0
